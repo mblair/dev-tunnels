@@ -162,13 +162,13 @@ public class TunnelRelayTunnelHost : TunnelHost, IRelayClient
         };
 
         ValidateAccessToken();
-        Trace.TraceInformation("Connecting to host tunnel relay {0}", this.relayUri!.AbsoluteUri);
+        Trace.Verbose("Connecting to host tunnel relay {0}", this.relayUri!.AbsoluteUri);
         var (stream, subprotocol) = await this.StreamFactory.CreateRelayStreamAsync(
             this.relayUri!,
             this.accessToken,
             protocols,
             cancellation);
-        Trace.TraceEvent(TraceEventType.Verbose, 0, "Connected with subprotocol '{0}'", subprotocol);
+        Trace.Verbose("Connected with subprotocol '{0}'", subprotocol);
         ConnectionProtocol = subprotocol;
         return stream;
     }
